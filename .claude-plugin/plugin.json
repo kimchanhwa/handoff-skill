@@ -1,0 +1,8 @@
+{
+  "name": "handoff",
+  "version": "1.0.0",
+  "description": "작업 상태를 파일로 남기고(/handoff) 다음 세션에서 이어받는다(/handoff resume).",
+  "author": {
+    "name": "kimchanhwa"
+  }
+}

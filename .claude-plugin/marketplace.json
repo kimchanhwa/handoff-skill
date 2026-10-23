@@ -1,0 +1,13 @@
+{
+  "name": "handoff-skill",
+  "owner": {
+    "name": "kimchanhwa"
+  },
+  "plugins": [
+    {
+      "name": "handoff",
+      "source": "./",
+      "description": "작업 상태를 파일로 남기고(/handoff) 다음 세션에서 이어받는다(/handoff resume)."
+    }
+  ]
+}
