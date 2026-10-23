@@ -1,7 +1,7 @@
 ---
 name: handoff
-description: 현재 작업 상태를 다음 세션이 이어받을 수 있게 파일로 남기거나(/handoff), 가장 최근 기록을 읽어 작업을 재개한다(/handoff resume).
-argument-hint: "[resume]"
+description: 현재 작업 상태를 다음 세션이 이어받을 수 있게 파일로 남기거나(/handoff), 가장 최근 또는 지정한 기록을 읽어 작업을 재개한다(/handoff resume [검색어]).
+argument-hint: "[resume [검색어]]"
 disable-model-invocation: true
 ---
 
@@ -13,7 +13,8 @@ disable-model-invocation: true
 
 - 비어 있으면 **저장 모드**로 진행한다.
 - `resume`이면 **재개 모드**로 진행한다.
-- 그 밖의 값이면 사용법(`/handoff`, `/handoff resume`)을 알려 주고 멈춘다.
+- `resume <검색어>`면 검색어로 고른 기록으로 **재개 모드**를 진행한다. (예: `/handoff resume 1622`)
+- 그 밖의 값이면 사용법(`/handoff`, `/handoff resume [검색어]`)을 알려 주고 멈춘다.
 
 ## 저장 모드
 
@@ -65,7 +66,10 @@ disable-model-invocation: true
 
 ## 재개 모드
 
-1. `<현재 작업 디렉터리>/output/handoff/`에서 파일명 기준으로 가장 최신 파일을 읽는다. 폴더나 파일이 없으면 "남긴 기록이 없어요."라고 알리고 멈춘다.
+1. `<현재 작업 디렉터리>/output/handoff/`에서 읽을 파일을 고른다. 폴더나 파일이 없으면 "남긴 기록이 없어요."라고 알리고 멈춘다.
+   - 검색어가 없으면 파일명 기준으로 가장 최신 파일을 읽는다.
+   - 검색어가 있으면 파일명에 검색어가 들어간 파일을 읽는다.
+   - 맞는 파일이 없거나 둘 이상이면 파일 목록(파일명과 각 파일의 `# Handoff:` 제목)을 최신순으로 보여 주고 멈춘다.
 2. 기록 이후 달라진 점을 확인한다.
    - 기록에 나온 파일이 지금도 있는지 확인한다.
    - 기록에 git 상태가 있으면 지금의 `git status --short`, 최근 커밋과 비교한다.
